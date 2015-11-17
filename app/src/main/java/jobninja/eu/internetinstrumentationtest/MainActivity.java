@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements jobninja.eu.inter
                 // get URL content
                 URL url = new URL("http://www.jobninja.eu");
                 URLConnection conn = url.openConnection();
-
+                conn.getURL().toString();
                 // open the stream and put it into BufferedReader
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(conn.getInputStream()));
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements jobninja.eu.inter
                     sb.append(inputLine);
                 }
                 c.response(true, sb.toString());
+                Log.d("Response", sb.toString().substring(0,20));
                 br.close();
             } catch (Exception e){
                 c.response(false, null);
